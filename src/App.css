@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-color: black;
+}
+
+button {
+  display: inline-block;
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 25px;
+  border: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.button-container {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.button-container button {
+  display: block;
+  background-color: rgba(224, 224, 224, 0.5);
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 25px;
+  border: none;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.button-container button:last-child {
+  margin-bottom: 0;
+}
+
+.button-container button:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}

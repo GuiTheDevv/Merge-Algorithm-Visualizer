@@ -1,3 +1,4 @@
+//merge sort
 export function mergeSort(array) {
     const animations = [];
     if (array.length  <= 1) return array;
@@ -58,3 +59,26 @@ function doMerge (
         mainArray[k++] = auxiliaryArray[j++];
     }
 }
+
+// bubble sort
+
+export function bubbleSort(array) {
+    const animations = [];
+    const n = array.length;
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        if (array[j] > array[j + 1]) {
+          animations.push([j, j + 1, true]);
+          [array[j], array[j + 1]] = [array[j + 1], array[j]];
+        } else {
+          animations.push([j, j + 1, false]);
+        }
+      }
+    }
+    return animations;
+  }
+
+
+
+  
+  
