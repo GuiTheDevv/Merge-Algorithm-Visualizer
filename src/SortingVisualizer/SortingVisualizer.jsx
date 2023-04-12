@@ -26,14 +26,20 @@ export class SortingVisualizer extends React.Component {
     mergeSort() {
         const animations = sortingAlgorithms.mergeSort(this.state.array);
         const newAnimations = [];
+
+        
         for (const animation of animations) {
             newAnimations.push(animation.comparison);
             newAnimations.push(animation.comparison);
             newAnimations.push(animation.swap);
         }
+
+        // This loops newAnimations array and uses setTimeout to change colour and height of bars
         for (let i = 0; i < newAnimations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
             const isColorChange = i % 3 !== 2;
+
+            //change colour of bars if not divisible by 3
             if (isColorChange) {
                 const [barOneIdx, barTwoIdx] = newAnimations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
@@ -43,7 +49,10 @@ export class SortingVisualizer extends React.Component {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
                 }, i * 8);
-            } else {
+            } 
+            
+            //change height of bars
+            else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = newAnimations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
@@ -52,17 +61,17 @@ export class SortingVisualizer extends React.Component {
             }
         }
     }
-
-    quickSort() {}
-
-    heapSort() {}
     
     bubbleSort() {
         const array = this.state.array.slice();
         const animations = sortingAlgorithms.bubbleSort(array);
+
+        //loop through each animation
         for (let i = 0; i < animations.length; i++) {
           const [barOneIdx, barTwoIdx, swap] = animations[i];
           const arrayBars = document.getElementsByClassName('array-bar');
+
+          //swap change heights of bars if swapper
           if (swap) {
             setTimeout(() => {
               const barOneStyle = arrayBars[barOneIdx].style;
@@ -71,7 +80,10 @@ export class SortingVisualizer extends React.Component {
               barOneStyle.height = barTwoStyle.height;
               barTwoStyle.height = tempHeight;
             }, i * 8);
-          } else {
+          } 
+          
+          //change bg colour of two bars
+          else {
             setTimeout(() => {
               const barOneStyle = arrayBars[barOneIdx].style;
               const barTwoStyle = arrayBars[barTwoIdx].style;
@@ -93,12 +105,9 @@ export class SortingVisualizer extends React.Component {
                 key={idx}
                 style={{height: `${value}px`}}></div>
             ))}
-
             <div className="button-container">
                 <button onClick={() => this.resetArray()}>New Array</button>
                 <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                <button onClick={() => this.quickSort()}>Quick Sort</button>
-                <button onClick={() => this.heapSort()}>Heap SOrt</button>
                 <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
             </div>
             
